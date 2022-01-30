@@ -50,7 +50,11 @@ unique_ptr<QCommandLineParser> createParser() {
     return parser;
 }
 
-static QString configPath() {
+static QString configPath(QString appFolder) {
+    if (!appFolder.isEmpty()) {
+      return appFolder + "/config.json";
+    }
+
     QString configDir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
     if (!QDir(configDir).mkpath(".")) {
         qWarning() << "Could not create dir" << configDir;
@@ -58,7 +62,11 @@ static QString configPath() {
     return configDir + "/config.json";
 }
 
-static QString logFormatsDirPath() {
+static QString logFormatsDirPath(QString appFolder) {
+    if (!appFolder.isEmpty()) {
+      return appFolder + "/logformats";
+    }
+
     return QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/logformats";
 }
 
@@ -103,8 +111,13 @@ int main(int argc, char* argv[]) {
     unique_ptr<QCommandLineParser> parser = createParser();
     parser->process(app);
 
-    Config config(configPath());
-    LogFormatStore store(logFormatsDirPath());
+#if defined(Q_OS_WIN)
+    Config config(configPath(app.applicationDirPath()));
+    LogFormatStore store(logFormatsDirPath(app.applicationDirPath()));
+#else
+    Config config(configPath(""));
+    LogFormatStore store(logFormatsDirPath(""));
+#endif
     MainWindow window(&config, &store);
     if (parser->isSet("format")) {
         QString formatName = parser->value("format");
