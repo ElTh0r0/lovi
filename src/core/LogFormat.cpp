@@ -18,8 +18,6 @@
  */
 #include "LogFormat.h"
 
-#include "Conditions.h"
-
 #include <QDebug>
 
 using std::unique_ptr;

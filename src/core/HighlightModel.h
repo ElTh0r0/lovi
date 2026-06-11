@@ -21,8 +21,6 @@
 
 #include <QAbstractItemModel>
 
-#include <memory>
-
 class LogFormat;
 
 class HighlightModel : public QAbstractListModel {

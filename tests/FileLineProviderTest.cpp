@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "FileLineProvider.h"
-
-#include "Catch2QtUtils.h"
-
 #include <QSignalSpy>
 #include <QTemporaryDir>
 #include <QTest>
-
 #include <catch2/catch.hpp>
+
+#include "FileLineProvider.h"
 
 using std::unique_ptr;
 

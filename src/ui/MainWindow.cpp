@@ -18,15 +18,6 @@
  */
 #include "MainWindow.h"
 
-#include "Config.h"
-#include "ItemDelegate.h"
-#include "LineProvider.h"
-#include "LogFormat.h"
-#include "LogFormatStore.h"
-#include "LogFormatWidget.h"
-#include "MainController.h"
-#include "ui_MainWindow.h"
-
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
@@ -38,6 +29,14 @@
 #include <QToolButton>
 #include <QTreeView>
 #include <QVBoxLayout>
+
+#include "Config.h"
+#include "ItemDelegate.h"
+#include "LogFormat.h"
+#include "LogFormatStore.h"
+#include "LogFormatWidget.h"
+#include "MainController.h"
+#include "ui_MainWindow.h"
 
 using std::optional;
 

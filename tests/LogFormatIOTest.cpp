@@ -16,16 +16,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "LogFormatIO.h"
+#include <QTemporaryDir>
+#include <catch2/catch.hpp>
 
 #include "LogFormat.h"
-
-#include "Catch2QtUtils.h"
+#include "LogFormatIO.h"
 #include "testconfig.h"
-
-#include <QTemporaryDir>
-
-#include <catch2/catch.hpp>
 
 using std::unique_ptr;
 

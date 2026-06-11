@@ -18,7 +18,6 @@
  */
 #include "HighlightWidget.h"
 
-#include "LogFormat.h"
 #include "WidgetUtils.h"
 #include "ui_HighlightWidget.h"
 

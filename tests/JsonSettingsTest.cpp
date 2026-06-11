@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "JsonSettings.h"
-
-#include "Catch2QtUtils.h"
-
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTemporaryDir>
-
 #include <catch2/catch.hpp>
+
+#include "JsonSettings.h"
 
 // stl
 #include <optional>

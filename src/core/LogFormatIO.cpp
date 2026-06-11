@@ -18,9 +18,6 @@
  */
 #include "LogFormatIO.h"
 
-#include "Conditions.h"
-#include "LogFormat.h"
-
 #include <QDebug>
 #include <QFile>
 #include <QFileInfo>
@@ -30,6 +27,8 @@
 #include <QJsonParseError>
 #include <QSaveFile>
 #include <QStandardPaths>
+
+#include "LogFormat.h"
 
 using std::optional;
 using std::shared_ptr;

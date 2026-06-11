@@ -18,9 +18,6 @@
  */
 #include "ColorWidget.h"
 
-#include "ColorUtils.h"
-#include "Highlight.h"
-
 #include <QButtonGroup>
 #include <QColorDialog>
 #include <QDebug>
@@ -28,6 +25,8 @@
 #include <QMenu>
 #include <QPainter>
 #include <QWidgetAction>
+
+#include "ColorUtils.h"
 
 static constexpr char NONE_COLOR_ICON[] = "paint-none";
 static constexpr char AUTO_COLOR_ICON[] = "colormanagement";
@@ -59,7 +58,7 @@ static QIcon createIcon(const OptionalColor& color, const QSize& iconSize) {
     return createColorIcon(col, iconSize);
 }
 
-//# ColorMenuWidget
+// # ColorMenuWidget
 ColorMenuWidget::ColorMenuWidget() : mLayout(new QVBoxLayout(this)) {
     mLayout->setSpacing(0);
     mLayout->setMargin(0);
@@ -73,7 +72,7 @@ QHBoxLayout* ColorMenuWidget::addRow() {
     return layout;
 }
 
-//# ColorItem
+// # ColorItem
 ColorItem::ColorItem(const QString& text, const OptionalColor& color) : mColor(color) {
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     setAutoRaise(true);
@@ -84,7 +83,7 @@ ColorItem::ColorItem(const QString& text, const OptionalColor& color) : mColor(c
     }
 }
 
-//# SimpleColorItem
+// # SimpleColorItem
 SimpleColorItem::SimpleColorItem(const OptionalColor& color) : SimpleColorItem({}, color) {
 }
 
@@ -93,7 +92,7 @@ SimpleColorItem::SimpleColorItem(const QString& text, const OptionalColor& color
     setIcon(createIcon(color, iconSize()));
 }
 
-//# CustomColorItem
+// # CustomColorItem
 CustomColorItem::CustomColorItem() : ColorItem(tr("Custom..."), {}) {
 }
 
@@ -106,7 +105,7 @@ void CustomColorItem::resetIcon() {
     setIcon({});
 }
 
-//# ColorWidget
+// # ColorWidget
 ColorWidget::ColorWidget(QWidget* parent)
         : QPushButton(parent)
         , mButtonGroup(std::make_unique<QButtonGroup>())

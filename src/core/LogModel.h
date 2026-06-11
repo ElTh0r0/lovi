@@ -25,8 +25,6 @@
 #include <QColor>
 #include <QVector>
 
-#include <memory>
-
 class Condition;
 class LogFormat;
 class LineProvider;

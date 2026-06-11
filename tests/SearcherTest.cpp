@@ -16,16 +16,13 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "Searcher.h"
+#include <QSignalSpy>
+#include <catch2/catch.hpp>
 
-#include "Catch2QtUtils.h"
 #include "ConditionIO.h"
 #include "Conditions.h"
 #include "LogFormat.h"
-
-#include <QSignalSpy>
-
-#include <catch2/catch.hpp>
+#include "Searcher.h"
 
 using std::unique_ptr;
 

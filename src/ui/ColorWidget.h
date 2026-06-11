@@ -19,8 +19,6 @@
 #ifndef COLORWIDGET_H
 #define COLORWIDGET_H
 
-#include "Highlight.h"
-
 #include "Color.h"
 #include "Vector.h"
 
