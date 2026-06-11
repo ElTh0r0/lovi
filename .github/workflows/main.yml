@@ -1,6 +1,8 @@
 name: main
 
-on: [push, pull_request, workflow_dispatch]
+#on: [push, pull_request, workflow_dispatch]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
