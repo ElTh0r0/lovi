@@ -70,7 +70,7 @@ Lovi does not support compressed log files for now.
 Lovi uses the Qt framework and a few other dependencies:
 
 - [CMake](https://cmake.org)
-- [KF5GuiAddons](https://download.kde.org)
+- [KF6GuiAddons](https://download.kde.org)
 
 Create a build dir:
 

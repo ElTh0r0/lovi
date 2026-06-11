@@ -18,11 +18,12 @@
  */
 #include "FileLineProvider.h"
 
-#include "FileWatcher.h"
-
 #include <QDebug>
 #include <QFile>
+#include <QStringRef> // Requires Core5Compat
 #include <QTimer>
+
+#include "FileWatcher.h"
 
 FileLineProvider::FileLineProvider(const QString& filePath, QObject* parent)
         : LineProvider(parent)

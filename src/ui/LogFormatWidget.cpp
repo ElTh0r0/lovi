@@ -18,6 +18,12 @@
  */
 #include "LogFormatWidget.h"
 
+#include <QAction>
+#include <QInputDialog>
+#include <QMessageBox>
+#include <QPushButton>
+#include <QToolTip>
+
 #include "FilterModel.h"
 #include "HighlightModel.h"
 #include "ItemDelegate.h"
@@ -30,12 +36,6 @@
 #include "WidgetFloater.h"
 #include "WidgetUtils.h"
 #include "ui_LogFormatWidget.h"
-
-#include <QAction>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QPushButton>
-#include <QToolTip>
 
 static constexpr char PARSER_SYNTAX_HELP[] =
     QT_TRANSLATE_NOOP("LogFormatWidget",
@@ -189,7 +189,7 @@ void LogFormatWidget::setupFilterTab() {
 
 void LogFormatWidget::setupSearchBar() {
     ui->searchBar->setEnabled(false);
-    ui->searchBar->layout()->setMargin(0);
+    ui->searchBar->layout()->setContentsMargins(0, 0, 0, 0);
     connect(mController,
             &MainController::currentHighlightChanged,
             this,
@@ -304,7 +304,7 @@ void LogFormatWidget::onSearchFinished(const SearchResponse& response) {
         text = tr("Hit bottom, continuing at top");
         break;
     }
-    auto pos = ui->searchNextButton->mapToGlobal({ui->searchNextButton->width(), 0});
+    auto pos = ui->searchNextButton->mapToGlobal(QPoint(ui->searchNextButton->width(), 0));
     QToolTip::showText(pos, text);
 }
 

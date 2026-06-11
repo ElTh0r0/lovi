@@ -20,6 +20,7 @@
 
 #include <QDebug>
 #include <QFile>
+#include <QStringRef> // Requires Core5Compat
 
 static const int STDIN_FD = 0;
 static const int POLL_INTERVAL = 500;

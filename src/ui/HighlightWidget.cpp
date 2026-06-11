@@ -68,7 +68,7 @@ static void setLabelIcon(QLabel* label, const QString& name) {
 
 void HighlightWidget::setupUi() {
     setEnabled(false);
-    layout()->setMargin(0);
+    layout()->setContentsMargins(0, 0, 0, 0);
 
     setLabelIcon(ui->bgColorLabel, "fill-color");
     setLabelIcon(ui->fgColorLabel, "format-text-color");

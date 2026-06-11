@@ -25,6 +25,7 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QMenu>
+#include <QStringRef> // Requires Core5Compat
 #include <QTimer>
 #include <QToolButton>
 #include <QTreeView>
@@ -84,7 +85,7 @@ void MainWindow::setupUi() {
     };
     auto resetMargins = [this] {
         auto* layout = centralWidget()->layout();
-        layout->setMargin(0);
+        layout->setContentsMargins(0, 0, 0, 0);
         layout->setSpacing(0);
     };
     auto setupTreeView = [this] {

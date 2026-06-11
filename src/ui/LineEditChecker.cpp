@@ -57,6 +57,6 @@ void LineEditChecker::showError(const QString& error) {
     QPalette pal(mLineEdit->parentWidget()->palette());
     pal.setBrush(QPalette::Base, errorColor);
     mLineEdit->setPalette(pal);
-    QPoint pos = mLineEdit->mapToGlobal({0, mLineEdit->height()});
+    QPoint pos = mLineEdit->mapToGlobal(QPoint(0, mLineEdit->height()));
     QToolTip::showText(pos, error);
 }

@@ -24,6 +24,7 @@
 #include <QAbstractTableModel>
 #include <QColor>
 #include <QVector>
+#include <QStringRef> // Requires Core5Compat
 
 class Condition;
 class LogFormat;

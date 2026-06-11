@@ -25,7 +25,7 @@ target_include_directories(tests PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(tests
     ${APPLIB_NAME}
-    Qt5::Test
+    Qt6::Test
     Catch2::Catch2
 )
 

@@ -26,11 +26,11 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # Dependencies
-find_package(Qt5 CONFIG REQUIRED Core Widgets Test LinguistTools)
+find_package(Qt6 CONFIG REQUIRED Core Widgets Test LinguistTools Core5Compat) # Try to remove Core5Compat
 find_package(ECM REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-find_package(KF5GuiAddons CONFIG REQUIRED)
+find_package(KF6GuiAddons CONFIG REQUIRED)
 
 # Installation directories
 if (UNIX AND NOT APPLE)

@@ -51,7 +51,7 @@ set(APPLIB_SRCS
     ui/WidgetUtils.cpp
 )
 
-qt5_add_resources(APPLIB_RESOURCES_SRCS ui/lovi.qrc)
+qt6_add_resources(APPLIB_RESOURCES_SRCS ui/lovi.qrc)
 
 # App library
 add_library(${APPLIB_NAME} STATIC
@@ -67,9 +67,10 @@ target_include_directories(${APPLIB_NAME} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/ui
 )
 target_link_libraries(${APPLIB_NAME}
-    Qt5::Core
-    Qt5::Widgets
-    KF5::GuiAddons
+    Qt6::Core
+    Qt6::Widgets
+    KF6::GuiAddons
+    Qt6::Core5Compat  # Try to remove Core5Compat
 )
 
 # Translations
@@ -77,7 +78,7 @@ set(TS_FILES
     translations/${APP_NAME}_en.ts
     translations/${APP_NAME}_nl.ts
 )
-qt5_add_translation(QM_FILES ${TS_FILES})
+qt6_add_translation(QM_FILES ${TS_FILES})
 add_custom_target(build_qm DEPENDS ${QM_FILES})
 add_dependencies(${APPLIB_NAME} build_qm)
 
@@ -129,10 +130,10 @@ endif()
 if (WIN32)
     include(DeployQt)
     windeployqt(${APP_NAME})
-    # install kf5guiaddons.dll so that it is included in the dll
-    get_target_property(kf5guiaddons_dll KF5::GuiAddons LOCATION)
+    # install kf6guiaddons.dll so that it is included in the dll
+    get_target_property(kf6guiaddons_dll KF6::GuiAddons LOCATION)
     install(
-        FILES ${kf5guiaddons_dll}
+        FILES ${kf6guiaddons_dll}
         DESTINATION ${BIN_INSTALL_DIR}
     )
 endif()

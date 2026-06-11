@@ -61,14 +61,13 @@ static QIcon createIcon(const OptionalColor& color, const QSize& iconSize) {
 // # ColorMenuWidget
 ColorMenuWidget::ColorMenuWidget() : mLayout(new QVBoxLayout(this)) {
     mLayout->setSpacing(0);
-    mLayout->setMargin(0);
+    mLayout->setContentsMargins(0, 0, 0, 0);
 }
 
 QHBoxLayout* ColorMenuWidget::addRow() {
     auto* layout = new QHBoxLayout;
     mLayout->addLayout(layout);
-    layout->setMargin(0);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     return layout;
 }
 

@@ -17,6 +17,7 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <QSignalSpy>
+#include <QStringRef> // Requires Core5Compat
 #include <QTemporaryDir>
 #include <QTest>
 #include <catch2/catch.hpp>
