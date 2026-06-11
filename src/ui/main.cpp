@@ -16,13 +16,6 @@
  * You should have received a copy of the GNU General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "MainWindow.h"
-
-#include "BuildConfig.h"
-#include "Config.h"
-#include "LogFormatStore.h"
-#include "Resources.h"
-
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
@@ -31,8 +24,13 @@
 #include <QLocale>
 #include <QStandardPaths>
 #include <QTranslator>
-
 #include <memory>
+
+#include "BuildConfig.h"
+#include "Config.h"
+#include "LogFormatStore.h"
+#include "MainWindow.h"
+#include "Resources.h"
 
 using std::unique_ptr;
 
@@ -50,10 +48,10 @@ unique_ptr<QCommandLineParser> createParser() {
     return parser;
 }
 
-static QString configPath(QString appFolder) {
-    if (!appFolder.isEmpty()) {
-      return appFolder + "/config.json";
-    }
+static QString configPath() {
+#ifdef USE_PORTABLE_CONFIG
+    return QCoreApplication::applicationDirPath() + "/config.json";
+#endif
 
     QString configDir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
     if (!QDir(configDir).mkpath(".")) {
@@ -62,10 +60,10 @@ static QString configPath(QString appFolder) {
     return configDir + "/config.json";
 }
 
-static QString logFormatsDirPath(QString appFolder) {
-    if (!appFolder.isEmpty()) {
-      return appFolder + "/logformats";
-    }
+static QString logFormatsDirPath() {
+#ifdef USE_PORTABLE_CONFIG
+    return QCoreApplication::applicationDirPath() + "/logformats";
+#endif
 
     return QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/logformats";
 }
@@ -111,13 +109,8 @@ int main(int argc, char* argv[]) {
     unique_ptr<QCommandLineParser> parser = createParser();
     parser->process(app);
 
-#if defined(Q_OS_WIN)
-    Config config(configPath(app.applicationDirPath()));
-    LogFormatStore store(logFormatsDirPath(app.applicationDirPath()));
-#else
-    Config config(configPath(""));
-    LogFormatStore store(logFormatsDirPath(""));
-#endif
+    Config config(configPath());
+    LogFormatStore store(logFormatsDirPath());
     MainWindow window(&config, &store);
     if (parser->isSet("format")) {
         QString formatName = parser->value("format");

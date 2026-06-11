@@ -16,6 +16,13 @@ set(APP_HUMAN_NAME "Lovi")
 set(APP_NAME ${PROJECT_NAME})
 set(APPLIB_NAME ${PROJECT_NAME}lib)
 
+set(LOVI_USE_PORTABLE_CONFIG
+  FALSE
+  CACHE BOOL "Store config in application folder")
+if(LOVI_USE_PORTABLE_CONFIG)
+add_compile_definitions(USE_PORTABLE_CONFIG)
+endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # Dependencies
