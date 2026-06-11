@@ -18,11 +18,11 @@
  */
 #include "ItemDelegate.h"
 
-#include "ColorUtils.h"
-
 #include <QAbstractItemView>
 #include <QDebug>
 #include <QPainter>
+
+#include "ColorUtils.h"
 
 static constexpr qreal NOT_SELECTED_AND_OVER_ALPHA = 0.1;
 static constexpr qreal SELECTED_AND_OVER_ALPHA = 0.3;
@@ -75,7 +75,7 @@ void ItemDelegate::paint(QPainter* painter,
         return itemView->selectionModel()->isSelected(index);
     };
 
-    ensureContrast(&option.palette, index.data(Qt::BackgroundRole), index.data(Qt::TextColorRole));
+    ensureContrast(&option.palette, index.data(Qt::BackgroundRole), index.data(Qt::ForegroundRole));
 
     takeFlag(&option.state, QStyle::State_HasFocus);
     bool selected = takeFlag(&option.state, QStyle::State_Selected);

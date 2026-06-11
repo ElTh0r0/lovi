@@ -18,11 +18,11 @@
  */
 #include "LogModel.h"
 
-#include "LineProvider.h"
-#include "LogFormat.h"
-
 #include <QColor>
 #include <QDebug>
+
+#include "LineProvider.h"
+#include "LogFormat.h"
 
 using std::optional;
 
@@ -59,14 +59,14 @@ QVariant LogModel::data(const QModelIndex& index, int role) const {
     }
     const auto& cell = logLine.cells.at(index.column());
     switch (role) {
-    case Qt::BackgroundColorRole:
-        return cell.bgColor.isValid()
-                   ? QVariant(cell.bgColor)
-                   : logLine.bgColor.isValid() ? QVariant(logLine.bgColor) : QVariant();
-    case Qt::TextColorRole:
-        return cell.fgColor.isValid()
-                   ? QVariant(cell.fgColor)
-                   : logLine.fgColor.isValid() ? QVariant(logLine.fgColor) : QVariant();
+    case Qt::BackgroundRole:
+        return cell.bgColor.isValid()      ? QVariant(cell.bgColor)
+               : logLine.bgColor.isValid() ? QVariant(logLine.bgColor)
+                                           : QVariant();
+    case Qt::ForegroundRole:
+        return cell.fgColor.isValid()      ? QVariant(cell.fgColor)
+               : logLine.fgColor.isValid() ? QVariant(logLine.fgColor)
+                                           : QVariant();
     case Qt::DisplayRole:
         return cell.text;
     };

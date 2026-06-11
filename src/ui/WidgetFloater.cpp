@@ -85,8 +85,8 @@ WidgetFloater::WidgetFloater(QWidget* parent) : QObject(parent), d(new WidgetFlo
     Q_ASSERT(parent);
     d->mParent = parent;
     d->mParent->installEventFilter(this);
-    d->mHorizontalMargin = QApplication::style()->pixelMetric(QStyle::PM_DefaultChildMargin);
-    d->mVerticalMargin = d->mHorizontalMargin;
+    d->mHorizontalMargin = QApplication::style()->pixelMetric(QStyle::PM_LayoutLeftMargin);
+    d->mVerticalMargin = QApplication::style()->pixelMetric(QStyle::PM_LayoutTopMargin);
 }
 
 WidgetFloater::~WidgetFloater() {

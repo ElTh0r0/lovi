@@ -62,8 +62,9 @@ QLineEdit* HighlightWidget::lineEdit() const {
 
 static void setLabelIcon(QLabel* label, const QString& name) {
     QIcon icon = QIcon::fromTheme(name);
-    label->setPixmap(icon.pixmap(32));
-    label->setFixedSize(label->pixmap()->size());
+    const QPixmap pm = icon.pixmap(32);
+    label->setPixmap(pm);
+    label->setFixedSize(pm.size());
 }
 
 void HighlightWidget::setupUi() {
