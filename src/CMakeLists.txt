@@ -94,6 +94,17 @@ ecm_add_app_icon(
 )
 add_executable(${APP_NAME} WIN32 MACOSX_BUNDLE ${APP_SRCS})
 
+target_compile_definitions(${APP_NAME}
+    PRIVATE
+        $<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x061100>
+        $<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
+)
+target_compile_definitions(${APPLIB_NAME}
+    PRIVATE
+        $<$<CONFIG:DEBUG>:QT_DISABLE_DEPRECATED_BEFORE=0x061100>
+        $<$<CONFIG:DEBUG>:QT_NO_NARROWING_CONVERSIONS_IN_CONNECT>
+)
+
 if (APPLE)
     configure_file(
         ${CMAKE_CURRENT_SOURCE_DIR}/macos/Info.plist.in

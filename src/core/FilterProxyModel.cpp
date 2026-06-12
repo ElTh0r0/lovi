@@ -18,20 +18,34 @@
  */
 #include "FilterProxyModel.h"
 
+#include <algorithm>
+
 #include "Filter.h"
 #include "LogFormat.h"
 #include "LogModel.h"
 
-#include <algorithm>
-
 FilterProxyModel::FilterProxyModel(LogModel* logModel, const LogFormat* logFormat)
         : mLogModel(logModel), mLogFormat(logFormat) {
     setSourceModel(logModel);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+    connect(mLogFormat, &LogFormat::filterChanged, this, &FilterProxyModel::onFilterChanged);
+    connect(mLogFormat, &LogFormat::filterAdded, this, &FilterProxyModel::onFilterChanged);
+    connect(mLogFormat, &LogFormat::filterRemoved, this, &FilterProxyModel::onFilterChanged);
+    connect(mLogFormat, &LogFormat::changed, this, &FilterProxyModel::onFilterChanged);
+#else
     connect(mLogFormat, &LogFormat::filterChanged, this, &FilterProxyModel::invalidateFilter);
     connect(mLogFormat, &LogFormat::filterAdded, this, &FilterProxyModel::invalidateFilter);
     connect(mLogFormat, &LogFormat::filterRemoved, this, &FilterProxyModel::invalidateFilter);
     connect(mLogFormat, &LogFormat::changed, this, &FilterProxyModel::invalidateFilter);
+#endif
 }
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+void FilterProxyModel::onFilterChanged() {
+    beginFilterChange();
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+}
+#endif
 
 bool FilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& /*sourceParent*/) const {
     bool anyMatch = std::any_of(mLogFormat->filters().begin(),

@@ -134,7 +134,7 @@ static void postProcessText(QString* text) {
 }
 
 LogLine LogModel::processLine(const QStringRef& line) const {
-    auto match = mLogFormat->parser().match(line);
+    auto match = mLogFormat->parser().match(line.toString());
     if (!match.hasMatch()) {
         return {};
     }

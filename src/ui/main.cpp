@@ -100,7 +100,6 @@ int main(int argc, char* argv[]) {
     app.setApplicationVersion(APP_VERSION);
     auto iconName = QString(":/appicon/sc-apps-%1.svg").arg(APP_NAME);
     app.setWindowIcon(QIcon(iconName));
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 
     initFallbackIcons();
 
