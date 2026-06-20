@@ -24,6 +24,9 @@
 #include <QLocale>
 #include <QStandardPaths>
 #include <QTranslator>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+#include <QStyleHints>
+#endif
 #include <memory>
 
 #include "BuildConfig.h"
@@ -85,11 +88,27 @@ static void loadTranslations(QObject* parent) {
 /**
  * Initialize QIcon so that QIcon::fromTheme() finds our icons on Windows and macOS
  */
-static void initFallbackIcons() {
+static void initFallbackIcons(QMainWindow* win) {
 #if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS)
-    // A theme name must be defined othewise QIcon::fromTheme won't look in fallbackSearchPaths
-    QIcon::setThemeName(APP_NAME);
-    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << ":/icons");
+    QString sIconTheme;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    if (Qt::ColorScheme::Dark == QGuiApplication::styleHints()->colorScheme()) {
+        sIconTheme = QStringLiteral("dark");
+    } else if (Qt::ColorScheme::Light == QGuiApplication::styleHints()->colorScheme()) {
+        sIconTheme = QStringLiteral("light");
+    }
+#endif
+    // If < Qt 6.5 or if Qt::ColorScheme::Unknown was returned
+    if (sIconTheme.isEmpty()) {
+        // If window is darker than text
+        if (win->window()->palette().window().color().lightnessF()
+            < win->window()->palette().windowText().color().lightnessF()) {
+            sIconTheme = QStringLiteral("dark");
+        } else {
+            sIconTheme = QStringLiteral("light");
+        }
+    }
+    QIcon::setThemeName(sIconTheme);
 #endif
 }
 
@@ -101,8 +120,6 @@ int main(int argc, char* argv[]) {
     auto iconName = QString(":/appicon/sc-apps-%1.svg").arg(APP_NAME);
     app.setWindowIcon(QIcon(iconName));
 
-    initFallbackIcons();
-
     loadTranslations(&app);
 
     unique_ptr<QCommandLineParser> parser = createParser();
@@ -111,6 +128,7 @@ int main(int argc, char* argv[]) {
     Config config(configPath());
     LogFormatStore store(logFormatsDirPath());
     MainWindow window(&config, &store);
+    initFallbackIcons(&window);
     if (parser->isSet("format")) {
         QString formatName = parser->value("format");
         LogFormat* logFormat = store.byName(formatName);

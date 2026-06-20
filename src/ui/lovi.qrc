@@ -2,13 +2,23 @@
     <qresource prefix="/">
         <file>appicon/sc-apps-lovi.svg</file>
         <file>palette.gpl</file>
-        <file>icons/fill-color.svg</file>
-        <file>icons/document-open.svg</file>
-        <file>icons/format-text-color.svg</file>
-        <file>icons/go-bottom.svg</file>
-        <file>icons/help-contents.svg</file>
-        <file>icons/list-add.svg</file>
-        <file>icons/object-columns.svg</file>
-        <file>icons/paint-none.svg</file>
+        <file>icons/light/index.theme</file>
+        <file>icons/light/scalable/fill-color.svg</file>
+        <file>icons/light/scalable/document-open.svg</file>
+        <file>icons/light/scalable/format-text-color.svg</file>
+        <file>icons/light/scalable/go-bottom.svg</file>
+        <file>icons/light/scalable/help-contents.svg</file>
+        <file>icons/light/scalable/list-add.svg</file>
+        <file>icons/light/scalable/object-columns.svg</file>
+        <file>icons/light/scalable/paint-none.svg</file>
+        <file>icons/dark/index.theme</file>
+        <file>icons/dark/scalable/fill-color.svg</file>
+        <file>icons/dark/scalable/document-open.svg</file>
+        <file>icons/dark/scalable/format-text-color.svg</file>
+        <file>icons/dark/scalable/go-bottom.svg</file>
+        <file>icons/dark/scalable/help-contents.svg</file>
+        <file>icons/dark/scalable/list-add.svg</file>
+        <file>icons/dark/scalable/object-columns.svg</file>
+        <file>icons/dark/scalable/paint-none.svg</file>
     </qresource>
 </RCC>
