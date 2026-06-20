@@ -50,7 +50,6 @@ function(windeployqt target)
     add_custom_command(TARGET ${target} POST_BUILD
         COMMAND "${CMAKE_COMMAND}" -E
             env PATH="${_qt_bin_dir}" "${WINDEPLOYQT_EXECUTABLE}"
-                --no-angle
                 --no-opengl-sw
                 \"$<TARGET_FILE:${target}>\"
                 --dir ${PROJECT_BINARY_DIR}/deployqt
