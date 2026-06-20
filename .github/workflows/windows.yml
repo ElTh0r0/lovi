@@ -51,7 +51,7 @@ jobs:
     - name: Create binary packages
       run: ci/build-app binary-packages
        
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: Lovi-Windows_Artefacts
         path: _work/build/lovi[-_]*.*
