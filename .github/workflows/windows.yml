@@ -1,0 +1,50 @@
+name: "Windows"
+
+# manual trigger
+on:
+  workflow_dispatch:
+
+jobs:
+  Windows_msvc:
+    name: Win latest Qt 6 msvc
+    runs-on: windows-latest
+    env:
+      QT_VERSION: '6.10.3'
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+        with:
+          submodules: true
+    
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: ${{ env.QT_VERSION }}
+        cache: 'true'
+        cache-key-prefix: install-qt-action
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2022_64'
+        modules: 'qtimageformats'
+    
+    - name: Build
+      run: ci/build-app build
+
+#    - name: Run tests
+#      run: ci/build-app tests
+
+    - name: Install
+      run: ci/build-app install
+
+    - name: Create binary packages
+      run: ci/build-app binary-packages
+       
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Lovi-Windows_Artefacts
+        path: _work/build/lovi[-_]*.*
+        retention-days: 2
+        overwrite: true
