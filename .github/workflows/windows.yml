@@ -18,7 +18,10 @@ jobs:
       uses: actions/checkout@v6
       with:
         submodules: true
-    
+
+    - name: Install dependencies
+      run: ci/build-app install-dependencies
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
