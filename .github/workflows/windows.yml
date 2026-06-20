@@ -19,9 +19,6 @@ jobs:
       with:
         submodules: true
 
-    - name: Install dependencies
-      run: ci/build-app install-dependencies
-
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -32,7 +29,10 @@ jobs:
         target: 'desktop'
         arch: 'win64_msvc2022_64'
         modules: 'qtimageformats'
-    
+
+    - name: Install dependencies
+      run: ci/build-app install-dependencies
+
     - name: Build
       run: ci/build-app build
 
