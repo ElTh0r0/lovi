@@ -28,7 +28,7 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2022_64'
-        modules: 'qtimageformats'
+        modules: 'qt5compat qtimageformats'
 
     - name: Install dependencies
       run: ci/build-app install-dependencies
