@@ -88,8 +88,7 @@ static void loadTranslations(QObject* parent) {
 /**
  * Initialize QIcon so that QIcon::fromTheme() finds our icons on Windows and macOS
  */
-static void initFallbackIcons(QMainWindow* win) {
-#if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS)
+static void initIconTheme(QMainWindow* win) {
     QString sIconTheme;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
     if (Qt::ColorScheme::Dark == QGuiApplication::styleHints()->colorScheme()) {
@@ -109,7 +108,6 @@ static void initFallbackIcons(QMainWindow* win) {
         }
     }
     QIcon::setThemeName(sIconTheme);
-#endif
 }
 
 int main(int argc, char* argv[]) {
@@ -128,7 +126,7 @@ int main(int argc, char* argv[]) {
     Config config(configPath());
     LogFormatStore store(logFormatsDirPath());
     MainWindow window(&config, &store);
-    initFallbackIcons(&window);
+    initIconTheme(&window);
     if (parser->isSet("format")) {
         QString formatName = parser->value("format");
         LogFormat* logFormat = store.byName(formatName);
