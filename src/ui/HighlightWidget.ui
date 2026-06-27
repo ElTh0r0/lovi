@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>288</width>
-    <height>100</height>
+    <width>306</width>
+    <height>112</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -83,14 +83,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ColorWidget</class>
-   <extends>QComboBox</extends>
-   <header>ColorWidget.h</header>
-  </customwidget>
-  <customwidget>
    <class>ConditionLineEdit</class>
    <extends>QLineEdit</extends>
    <header>ConditionLineEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ColorWidget</class>
+   <extends>QComboBox</extends>
+   <header>ColorWidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

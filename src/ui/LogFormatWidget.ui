@@ -14,8 +14,7 @@
    <string>Format</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="object-columns">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="object-columns"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -46,8 +45,7 @@
         <string>+</string>
        </property>
        <property name="icon">
-        <iconset theme="list-add">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="list-add"/>
        </property>
       </widget>
      </item>
@@ -56,7 +54,7 @@
    <item>
     <widget class="Line" name="line">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
     </widget>
    </item>
@@ -98,7 +96,7 @@
        <item>
         <widget class="QListView" name="highlightListView">
          <property name="editTriggers">
-          <set>QAbstractItemView::NoEditTriggers</set>
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
          </property>
         </widget>
        </item>
@@ -121,7 +119,7 @@
        <item>
         <widget class="Line" name="line_2">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -145,7 +143,7 @@
           <item>
            <spacer name="horizontalSpacer">
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Orientation::Horizontal</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
