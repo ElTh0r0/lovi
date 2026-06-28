@@ -80,7 +80,8 @@ void MainWindow::loadLog(const QString& filePath) {
 
 void MainWindow::setupUi() {
     auto changeOpenButtonMenuBehavior = [this] {
-        auto* button = static_cast<QToolButton*>(ui->toolBar->widgetForAction(ui->openAction));
+        auto* button =
+            static_cast<QToolButton*>(ui->toolBar->widgetForAction(ui->openRecentAction_Toolbar));
         button->setPopupMode(QToolButton::MenuButtonPopup);
     };
     auto resetMargins = [this] {
@@ -118,9 +119,19 @@ static void appendShortcutToToolTip(QAction* action) {
 
 void MainWindow::setupActions() {
     ui->openAction->setShortcut(QKeySequence::Open);
-    ui->openAction->setMenu(mRecentFilesMenu);
     connect(ui->openAction, &QAction::triggered, this, &MainWindow::showOpenLogDialog);
+
+    ui->openRecentAction->setMenu(mRecentFilesMenu);
+    ui->openRecentAction_Toolbar->setMenu(mRecentFilesMenu);
+    connect(
+        ui->openRecentAction_Toolbar, &QAction::triggered, this, &MainWindow::showOpenLogDialog);
     connect(mRecentFilesMenu, &QMenu::aboutToShow, this, &MainWindow::fillRecentFilesMenu);
+    for (auto action : {ui->openRecentAction, ui->autoScrollAction}) {
+        appendShortcutToToolTip(action);
+    }
+
+    ui->quitAction->setShortcut(QKeySequence::Quit);
+    connect(ui->quitAction, &QAction::triggered, this, &MainWindow::close);
 
     ui->autoScrollAction->setShortcut(Qt::SHIFT | Qt::Key_S);
     connect(ui->autoScrollAction, &QAction::toggled, this, [this](bool toggled) {
@@ -128,10 +139,6 @@ void MainWindow::setupActions() {
             ui->treeView->scrollToBottom();
         }
     });
-
-    for (auto action : {ui->openAction, ui->autoScrollAction}) {
-        appendShortcutToToolTip(action);
-    }
 
     mCopyLinesAction->setText(tr("Copy"));
     mCopyLinesAction->setShortcut(QKeySequence::Copy);
@@ -191,6 +198,7 @@ void MainWindow::setupLogFormatWidget() {
     auto action = ui->logFormatDockWidget->toggleViewAction();
     action->setIcon(mLogFormatWidget->windowIcon());
     ui->toolBar->addAction(action);
+    ui->menuSettings->addAction(action);
 }
 
 void MainWindow::copySelectedLines() {

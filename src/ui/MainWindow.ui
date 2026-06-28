@@ -51,7 +51,7 @@
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Toolbar</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -65,7 +65,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="openAction"/>
+   <addaction name="openRecentAction_Toolbar"/>
    <addaction name="autoScrollAction"/>
   </widget>
   <widget class="QDockWidget" name="logFormatDockWidget">
@@ -74,15 +74,42 @@
    </attribute>
    <widget class="QWidget" name="dockWidgetContents"/>
   </widget>
-  <action name="openAction">
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="openAction"/>
+    <addaction name="openRecentAction"/>
+    <addaction name="separator"/>
+    <addaction name="quitAction"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="autoScrollAction"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
+  </widget>
+  <action name="openRecentAction">
    <property name="icon">
     <iconset theme="document-open"/>
    </property>
    <property name="text">
-    <string>&amp;Open</string>
+    <string>Open &amp;Recent</string>
    </property>
    <property name="toolTip">
-    <string>Open log file</string>
+    <string>Open recent log file</string>
    </property>
   </action>
   <action name="autoScrollAction">
@@ -97,6 +124,36 @@
    </property>
    <property name="toolTip">
     <string>Automatically scroll down when new lines are logged</string>
+   </property>
+  </action>
+  <action name="openAction">
+   <property name="icon">
+    <iconset theme="document-open"/>
+   </property>
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open log file</string>
+   </property>
+  </action>
+  <action name="quitAction">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit application</string>
+   </property>
+  </action>
+  <action name="openRecentAction_Toolbar">
+   <property name="icon">
+    <iconset theme="document-open"/>
+   </property>
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open log file</string>
    </property>
   </action>
  </widget>
